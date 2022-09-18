@@ -1,0 +1,2 @@
+pyrogram
+psycopg2
