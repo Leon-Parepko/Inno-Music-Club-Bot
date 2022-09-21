@@ -1,24 +1,23 @@
-import pyrogram
+import asyncio
 import psycopg2
 
+from pyrogram import Client
+from bot.filters import register_all_filters
+from bot.misc import TgKeys as Secret
+from bot.handlers import register_all_handlers
+from bot.database.models import register_models
 
-# from aiogram.utils import executor
-# from aiogram import Bot, Dispatcher
-# from aiogram.contrib.fsm_storage.memory import MemoryStorage
-#
-# from bot.filters import register_all_filters
-# from bot.misc import TgKeys
-# from bot.handlers import register_all_handlers
-# from bot.database.models import register_models
-#
-#
-# async def __on_start_up(dp: Dispatcher) -> None:
-#     register_all_filters(dp)
-#     register_all_handlers(dp)
-#     register_models()
-#
-#
-# def start_bot():
-#     bot = Bot(token=TgKeys.TOKEN, parse_mode='HTML')
-#     dp = Dispatcher(bot, storage=MemoryStorage())
-#     executor.start_polling(dp, skip_updates=True, on_startup=__on_start_up)
+
+def __on_start_up(bot):
+    register_all_filters(bot)
+    print("Filters: OK")
+    register_all_handlers(bot)
+    print("Handlers: OK")
+    register_models(bot)
+    print("Database: OK")
+
+
+def start_bot():
+    bot = Client("Inno_Music_Club_Bot_v2", api_id=Secret.API_ID, api_hash=Secret.API_HASH, bot_token=Secret.TOKEN)
+    __on_start_up(bot)
+    bot.run()

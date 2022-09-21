@@ -1,7 +1,9 @@
-from aiogram import Dispatcher
+from pyrogram import filters
 
 
-def register_user_handlers(dp: Dispatcher):
-    # todo: register all user handlers
-    pass
+# Write here all handlers as decorators inside this function
+def register_user_handlers(bot) -> None:
 
+    @bot.on_message(filters.text & filters.private)
+    async def test_echo(client, message):
+        await message.reply(message.text)

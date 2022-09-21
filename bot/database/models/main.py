@@ -1,3 +1,6 @@
-def register_models() -> None:
-    # todo: register models
+
+
+
+
+def register_models(bot):
     pass

@@ -1,6 +1,6 @@
-from aiogram import Dispatcher
 
 
-def register_admin_handlers(dp: Dispatcher):
-    # todo: register all admin handlers
+
+# Write here all handlers as decorators inside this function
+def register_admin_handlers(bot) -> None:
     pass
