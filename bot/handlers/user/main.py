@@ -32,12 +32,15 @@ def register_user_handlers(bot) -> None:
 
         # print(message)
         if not registered:
+
+            # !!!DONT FORGET TO SET EXIT BUTTON!!!
+
             await message.reply(Dialogues.registration_2)
 
             # Get real First, Second, Third name
-            await message.reply(Dialogues.registration_name_1)
             while True:
-                name = await client.ask(chat_id).text
+                name = await client.ask(chat_id, Dialogues.registration_name_1)
+                name = name.text
                 if utils.check_name(name):
                     splited_name = name.split(" ")
 
@@ -52,9 +55,9 @@ def register_user_handlers(bot) -> None:
             print(name)
 
             # Get real Phone number
-            await message.reply(Dialogues.registration_phone_1)
             while True:
-                phone = await client.ask(chat_id).text
+                phone = await client.ask(chat_id, Dialogues.registration_phone_1)
+                phone = phone.text
                 if utils.check_phone(phone):
 
                     user_data["phone"] = phone
@@ -66,9 +69,9 @@ def register_user_handlers(bot) -> None:
             print(phone)
 
             # Get user email
-            await message.reply(Dialogues.registration_email_1)
             while True:
-                email = await client.ask(chat_id).text
+                email = await client.ask(chat_id, Dialogues.registration_email_1)
+                email = email.text
                 if utils.check_email(email):
 
                     user_data["email"] = email
@@ -77,7 +80,7 @@ def register_user_handlers(bot) -> None:
                 else:
                     await message.reply(Dialogues.registration_email_2)
 
-            print(phone)
+            print(email)
 
 
             # Write user_data to DB
