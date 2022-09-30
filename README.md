@@ -15,6 +15,54 @@
 ...
 
 ## How to start:
+
+[//]: # (TODO: show normal context)
+
+### Context
++ PostgreSQL
+
+---
+
+### Run PostgreSQL (optional)
+
+Get official postgres docker image
+
+    docker pull postgres
+
+You can run Postgres this way (map a port):
+
+MY_POSTGRES_PASSWORD - your password to access to postgres
+
+    docker run --name some-postgres -e POSTGRES_PASSWORD=MY_POSTGRES_PASSWORD -d -p 5432:5432 postgres
+
+To test: Run the postgres database (command above)
+
+    docker ps
+    CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                                 NAMES
+    05b3a3471f6f        postgres            "/docker-entrypoint.s"   1 seconds ago       Up 1 seconds        0.0.0.0:5432->5432/tcp    some-postgres
+
+Go inside your container and create a database:
+
+
+    docker exec -it 05b3a3471f6f bash
+    root@05b3a3471f6f:/# psql -U postgres
+    postgres-# CREATE DATABASE mytest;
+    postgres-# \q
+
+Go to your localhost (where you have some tool or the psql client).
+
+    psql -h localhost -p MY_POSTGRES_PORT -U postgres
+
+(Password: MY_POSTGRES_PASSWORD)
+
+    postgres=# \l
+
+                             List of databases
+       Name    |  Owner   | Encoding |  Collate   |   Ctype    |   Access privileges
+    -----------+----------+----------+------------+------------+-----------------------
+    mytest    | postgres | UTF8     | en_US.utf8 | en_US.utf8 |
+    postgres  | postgres | UTF8     | en_US.utf8 | en_US.utf8 |
+    template0 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres
 ...
 
 

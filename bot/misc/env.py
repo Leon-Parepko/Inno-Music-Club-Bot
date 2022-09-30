@@ -3,10 +3,20 @@ from typing import Final
 
 
 class TgKeys:
-    TOKEN: Final = environ.get('TOKEN')
-    API_ID: Final = environ.get('API_ID')
-    API_HASH: Final = environ.get('API_HASH')
+    TOKEN: Final = environ['TOKEN']
+    API_ID: Final = environ['API_ID']
+    API_HASH: Final = environ['API_HASH']
+
 
 class Email:
     SENDER: Final[str] = environ.get('EMAIL')
     PASS: Final[str] = environ.get('EMAIL_PASS')
+
+
+class PG:
+    tables_created: bool = environ.get('PG_TABLES_CREATED', default=False)
+    dbname: Final[str] = environ.get('PG_DB_NAME', default='innomusicclub')
+    user: Final[str] = environ.get('PG_USER', default='postgres')
+    host: Final[str] = environ.get('PG_HOST', default='localhost')
+    password: Final[str] = environ['PG_PASS']
+    port: Final[str] = environ.get('PG_PORT', default='5432')
