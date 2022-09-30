@@ -5,7 +5,7 @@ from pyrogram import Client
 from bot.filters import register_all_filters
 from bot.misc import TgKeys as Secret
 from bot.handlers import register_all_handlers
-from bot.database.models import register_models
+from bot.database import register_db
 
 
 def __on_start_up(bot):
@@ -13,7 +13,7 @@ def __on_start_up(bot):
     print("Filters: OK")
     register_all_handlers(bot)
     print("Handlers: OK")
-    register_models(bot)
+    register_db()
     print("Database: OK")
 
 

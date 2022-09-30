@@ -1,6 +1,3 @@
+from bot.database.models.user import UserModel
 
-
-
-
-def register_models(bot):
-    pass
+models = [UserModel]
