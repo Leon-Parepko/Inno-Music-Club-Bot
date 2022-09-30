@@ -5,16 +5,26 @@ from pyrogram import Client
 from bot.filters import register_all_filters
 from bot.misc import TgKeys as Secret
 from bot.handlers import register_all_handlers
+from bot.email import register_email
 from bot.database import register_db
 
 
 def __on_start_up(bot):
     register_all_filters(bot)
     print("Filters: OK")
+
     register_all_handlers(bot)
     print("Handlers: OK")
+
     register_db()
     print("Database: OK")
+
+    register_email()
+    print("Email Server: OK")
+
+
+    from bot.misc.util import send_verify_message
+    send_verify_message("innomusicclubofficial@gmail.com")
 
 
 def start_bot():

@@ -8,6 +8,11 @@ class TgKeys:
     API_HASH: Final = environ['API_HASH']
 
 
+class Email:
+    SENDER: Final[str] = environ.get('EMAIL')
+    PASS: Final[str] = environ.get('EMAIL_PASS')
+
+
 class PG:
     tables_created: bool = environ.get('PG_TABLES_CREATED', default=False)
     dbname: Final[str] = environ.get('PG_DB_NAME', default='innomusicclub')
