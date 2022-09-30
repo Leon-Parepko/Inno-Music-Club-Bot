@@ -21,7 +21,6 @@ class Markups:
     exit_button = ptypes.ReplyKeyboardMarkup([[("Exit")]], one_time_keyboard=True, resize_keyboard=True)
     yes_no_exit_button = ptypes.ReplyKeyboardMarkup([[("Yes"), ("No")], [("Exit")]], one_time_keyboard=True, resize_keyboard=True)
     email = ptypes.ReplyKeyboardMarkup([[("Send one more time")], [("Exit")]], one_time_keyboard=True, resize_keyboard=True)
-
     no_buttons = ptypes.ReplyKeyboardRemove()
 
 

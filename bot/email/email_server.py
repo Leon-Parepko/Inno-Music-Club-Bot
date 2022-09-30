@@ -12,6 +12,9 @@ class Email_Server:
         self.server.login(self.sender, self.password)
 
     def send(self, to, msg):
-        # TODO: add try catch
-        msg = MIMEText(msg)
-        self.server.sendmail(self.sender, to, msg.as_string())
+        try:
+            msg = MIMEText(msg)
+            self.server.sendmail(self.sender, to, msg.as_string())
+
+        except Exception as e:
+            raise type(e)(str(e).rstrip() + "happens while sending verification email.")
