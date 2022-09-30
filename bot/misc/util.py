@@ -1,4 +1,13 @@
 import re
+import secrets
+import string
+from bot.email import get_email_server
+
+
+def generate_secret():
+    alphabet = string.ascii_letters + string.digits
+    code = ''.join(secrets.choice(alphabet) for i in range(6))
+    return code
 
 
 def is_registered(alias):
@@ -39,3 +48,19 @@ def check_phone(phone):
 def check_email(email):
     # Write code
     return True
+
+
+def send_verify_message(to):
+    server = get_email_server()
+    secret = generate_secret()
+
+    try:
+        server.send(to, f'Here is your verification key: {secret}. \nDO NOT pass it to anybody else!')
+        return secret
+
+    except Exception as e:
+        return None
+
+
+
+
