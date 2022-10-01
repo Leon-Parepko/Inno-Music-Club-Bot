@@ -11,7 +11,7 @@ def generate_secret():
 
 
 def is_registered(alias):
-    # Write code
+    #TODO Write code
     return False
 
 
@@ -41,26 +41,19 @@ def check_name(name):
 
 
 def check_phone(phone):
-    # Write code
+    #TODO Write code
     return True
 
 
 def check_email(email):
-    # Write code
+    #TODO Write code
     return True
 
 
 def send_verify_message(to):
     server = get_email_server()
     secret = generate_secret()
-
-    try:
-        server.send(to, f'Here is your verification key: {secret}. \nDO NOT pass it to anybody else!')
-        return secret
-
-    except Exception as e:
-        return None
-
-
+    server.send(to, f'Here is your verification key: {secret}. \nDO NOT pass it to anybody else!')
+    return secret
 
 

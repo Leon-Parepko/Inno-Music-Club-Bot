@@ -1,6 +1,3 @@
-import asyncio
-import psycopg2
-
 from pyrogram import Client
 from bot.filters import register_all_filters
 from bot.misc import TgKeys as Secret
@@ -21,10 +18,6 @@ def __on_start_up(bot):
 
     register_email()
     print("Email Server: OK")
-
-
-    from bot.misc.util import send_verify_message
-    send_verify_message("innomusicclubofficial@gmail.com")
 
 
 def start_bot():

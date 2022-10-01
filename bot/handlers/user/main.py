@@ -107,7 +107,7 @@ def register_user_handlers(bot) -> None:
 
                     secret = utils.send_verify_message(email)
 
-
+                    # Ask for a secret in a loop
                     i = 0
                     while i <= 3:
                         ans = await client.ask(chat_id, Dialogues.registration_email_3, reply_markup=Markups.exit_button)
@@ -119,12 +119,14 @@ def register_user_handlers(bot) -> None:
                         if exit_code:
                             break
 
+                        # Write to variable if answer is correct
                         if secret == ans:
                             user_data["email"] = email
                             break
                         else:
                             await message.reply(Dialogues.registration_email_4, reply_markup=Markups.exit_button)
 
+                        # On third wrong answer ask for resending
                         if i == 2:
                             ans = await client.ask(chat_id, Dialogues.registration_email_5, reply_markup=Markups.email)
                             await ans.delete()
