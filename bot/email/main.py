@@ -12,7 +12,7 @@ def register_email():
         return
 
     except Exception as e:
-        raise type(e)(str(e).rstrip() + "happens while register email.")
+        raise type(e)(str(e).rstrip() + ": happens while register email.")
 
 
 def get_email_server():
