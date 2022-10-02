@@ -7,17 +7,17 @@ from bot.database import register_db
 
 
 def __on_start_up(bot):
-    register_all_filters(bot)
-    print("Filters: OK")
-
-    register_all_handlers(bot)
-    print("Handlers: OK")
-
     register_db()
     print("Database: OK")
 
     register_email()
     print("Email Server: OK")
+
+    register_all_filters(bot)
+    print("Filters: OK")
+
+    register_all_handlers(bot)
+    print("Handlers: OK")
 
 
 def start_bot():
