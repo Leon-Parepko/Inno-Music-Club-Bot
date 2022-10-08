@@ -32,8 +32,8 @@ class TestSomeUtils(unittest.TestCase):
 
     def test_get_class_field_by_name(self):
         # print(self.test_table)
-        print(self.TestClasses.ClassA().__dict__)
-        print(self.TestClasses.ClassA().__class__.__dict__.get('__annotations__'))
+        # print(self.TestClasses.ClassA().__dict__)
+        # print(self.TestClasses.ClassA().__class__.__dict__.get('__annotations__'))
         fields = self.TestClasses.ClassA().__class__.__dict__.get("__annotations__")
         for item in self.test_table:
             actual, expect = item[0], item[1]
