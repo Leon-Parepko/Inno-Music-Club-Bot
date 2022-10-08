@@ -1,3 +1,5 @@
 pyrogram
 pyromod
-psycopg2-binary
+psycopg
+
+# PostgreSQL v13 or higher

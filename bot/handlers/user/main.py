@@ -5,23 +5,20 @@ import bot.misc.util as utils
 from pyromod import listen
 
 
-
 # Write here all handlers as decorators inside this function
 def register_user_handlers(bot) -> None:
-
-
     @bot.on_message(filters.command("start") & filters.private)
     async def on_start(client, message):
         chat_id = message.chat.id
         user_alias = message.from_user.username
         user_data = {
-                     "name": {"name": None, "surname": None, "patronymic": None},
-                     "alias": user_alias,
-                     "chat_id": chat_id,
-                     "phone": None,
-                     "email": None,
-                     "from_inno": None,
-                     }
+            "name": {"name": None, "surname": None, "patronymic": None},
+            "alias": user_alias,
+            "chat_id": chat_id,
+            "phone": None,
+            "email": None,
+            "from_inno": None,
+        }
 
         registered = utils.is_registered(alias=user_alias)
 
@@ -49,7 +46,6 @@ def register_user_handlers(bot) -> None:
                     user_data["from_inno"] = ans
                     break
 
-
             # Get real First, Second, Third name
             while not exit_code:
                 name = await client.ask(chat_id, Dialogues.registration_name_1, reply_markup=Markups.exit_button)
@@ -71,7 +67,6 @@ def register_user_handlers(bot) -> None:
                 else:
                     await message.reply(Dialogues.registration_name_2)
 
-
             # Get real Phone number
             while not exit_code:
                 phone = await client.ask(chat_id, Dialogues.registration_phone_1, reply_markup=Markups.exit_button)
@@ -90,7 +85,6 @@ def register_user_handlers(bot) -> None:
                 else:
                     await message.reply(Dialogues.registration_phone_2)
 
-
             # Get user email
             while not exit_code:
                 email = await client.ask(chat_id, Dialogues.registration_email_1, reply_markup=Markups.exit_button)
@@ -104,13 +98,13 @@ def register_user_handlers(bot) -> None:
 
                 elif utils.check_email(email):
 
-
                     secret = utils.send_verify_message(email)
 
                     # Ask for a secret in a loop
                     i = 0
                     while i <= 3:
-                        ans = await client.ask(chat_id, Dialogues.registration_email_3, reply_markup=Markups.exit_button)
+                        ans = await client.ask(chat_id, Dialogues.registration_email_3,
+                                               reply_markup=Markups.exit_button)
                         await ans.delete()
                         ans = ans.text
 
@@ -147,15 +141,12 @@ def register_user_handlers(bot) -> None:
                 else:
                     await message.reply(Dialogues.registration_email_2)
 
-
             # TODO Check if all data is filled
             # TODO Write user_data to DB
             await message.reply(Dialogues.registration_3, reply_markup=Markups.no_buttons)
 
         else:
             await message.reply(Dialogues.registration_1, reply_markup=Markups.no_buttons)
-
-
 
     @bot.on_message(filters.text & filters.private)
     async def test_echo(client, message):
