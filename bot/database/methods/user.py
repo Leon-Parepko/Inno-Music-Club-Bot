@@ -39,7 +39,7 @@ class UserRepository:   # Need exception safety
     def delete(cls, uuid):
         query = f'UPDATE {UserModel.getTableName()} SET deleted_at = now() ' \
                 f'WHERE uuid=\'{uuid}\' ' \
-                f'AND created_at IS NULL'
+                f'AND deleted_at IS NULL'
         conn = get_connection()
         cur = conn.cursor()
         with conn.transaction():
@@ -51,7 +51,7 @@ class UserRepository:   # Need exception safety
 
         query = f'UPDATE {user.getTableName()} SET {names_str} = {values_str} ' \
                 f'WHERE uuid=\'{user.uuid}\' ' \
-                f'AND created_at IS NULL'
+                f'AND deleted_at IS NULL'
         conn = get_connection()
         cur = conn.cursor()
         with conn.transaction():
@@ -61,7 +61,7 @@ class UserRepository:   # Need exception safety
     def restore(cls, uuid):
         query = f'UPDATE {UserModel.getTableName()} SET deleted_at = NULL ' \
                 f'WHERE uuid=\'{uuid}\' ' \
-                f'AND created_at IS NOT NULL'
+                f'AND deleted_at IS NOT NULL'
         conn = get_connection()
         cur = conn.cursor()
         with conn.transaction():

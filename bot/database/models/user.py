@@ -91,7 +91,8 @@ class UserModel(BaseModel):
     def get(self) -> (str, callable):
         return f'SELECT {"(" + (", ".join(list(map(lambda x: x[0], self.__dict__.items())))) + ")"} ' \
                f'FROM {self.getTableName()}; ' \
-               f'WHERE uuid=\'{self.uuid}\'', \
+               f'WHERE uuid=\'{self.uuid}\' ' \
+               f'AND deleted_at IS NULL', \
                self.write
 
     def write(self, dict):
@@ -99,7 +100,8 @@ class UserModel(BaseModel):
 
     def read(self) -> str:
         return f'SELECT {"(" + (", ".join(list(map(lambda x: x[0], self.__dict__.items())))) + ")"} ' \
-               f'FROM {self.getTableName()};'
+               f'FROM {self.getTableName()} ' \
+               f'WHERE deleted_at IS NULL'
 
     def update(self) -> str:
         pass
