@@ -15,7 +15,7 @@
 * `python 3.10`
 * `pyrogram`
 * `pyromod`
-* `psycopg2` Note: use binary installation `psycopg2-binary` for new versions of python.
+* `psycopg` Note: Third version of psycopg
 
 ## How to start:
 
