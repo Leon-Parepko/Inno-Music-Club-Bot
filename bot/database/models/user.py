@@ -26,19 +26,19 @@ create_table_query = f'''CREATE TABLE {table_name}(
 
 class UserModel(BaseModel):
 
-    def __init__(self, chat_id, alias):
-        self.chat_id = chat_id
-        self.alias = alias
+    # def __init__(self, chat_id, alias):
+    #     self.chat_id = chat_id
+    #     self.alias = alias
 
-    def __int__(self, uuid, chat_id, alias,
+    def __init__(self, uuid, chat_id, alias,
                 name, surname, patronymic,
                 sex, email, phone, from_inno,
                 created_at, updated_at, deleted_at
                 ):
-        self.uuid = uuid, self.chat_id = chat_id, self.alias = alias
-        self.name = name, self.surname = surname, self.patronymic = patronymic
-        self.sex = sex, self.email = email, self.phone = phone, self.from_inno = from_inno
-        self.created_at = created_at, self.updated_at = updated_at, self.deleted_at = deleted_at
+        self.uuid = uuid; self.chat_id = chat_id; self.alias = alias
+        self.name = name; self.surname = surname; self.patronymic = patronymic
+        self.sex = sex; self.email = email; self.phone = phone; self.from_inno = from_inno
+        self.created_at = created_at; self.updated_at = updated_at; self.deleted_at = deleted_at
 
     @classmethod
     def getTableName(cls) -> str:
