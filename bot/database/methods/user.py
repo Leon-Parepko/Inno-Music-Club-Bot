@@ -34,6 +34,39 @@ class UserRepository:   # Need exception safety
             cur.execute(query)
         return cur.fetchone()
 
+    @classmethod
+    def get_one_by_chat_id(cls, chat_id) -> UserModel:
+        query = f'SELECT * FROM {UserModel.getTableName()} ' \
+                f'WHERE chat_id={chat_id} ' \
+                f'AND deleted_at IS NULL'
+        conn = get_connection()
+        cur = conn.cursor(row_factory=UserModel.row_factory)
+        with conn.transaction():
+            cur.execute(query)
+        return cur.fetchone()
+
+    @classmethod
+    def get_one_by_phone(cls, phone: int) -> UserModel:
+        query = f'SELECT * FROM {UserModel.getTableName()} ' \
+                f'WHERE phone={phone} ' \
+                f'AND deleted_at IS NULL'
+        conn = get_connection()
+        cur = conn.cursor(row_factory=UserModel.row_factory)
+        with conn.transaction():
+            cur.execute(query)
+        return cur.fetchone()
+
+    @classmethod
+    def get_one_by_email(cls, email: str) -> UserModel:
+        query = f'SELECT * FROM {UserModel.getTableName()} ' \
+                f'WHERE email=\'{email}\' ' \
+                f'AND deleted_at IS NULL'
+        conn = get_connection()
+        cur = conn.cursor(row_factory=UserModel.row_factory)
+        with conn.transaction():
+            cur.execute(query)
+        return cur.fetchone()
+
 
     @classmethod
     def delete(cls, uuid):

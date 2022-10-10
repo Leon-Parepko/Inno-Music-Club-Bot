@@ -20,7 +20,7 @@ def register_user_handlers(bot) -> None:
             "from_inno": None,
         }
 
-        registered = utils.is_registered(alias=user_alias)
+        registered = utils.is_registered(chat_id=chat_id)
 
         # Delete Start message
         await message.delete()
@@ -78,7 +78,7 @@ def register_user_handlers(bot) -> None:
                 if exit_code:
                     break
 
-                elif utils.check_phone(phone):
+                elif utils.phone_correct(phone):
                     user_data["phone"] = phone
                     break
 
@@ -96,7 +96,7 @@ def register_user_handlers(bot) -> None:
                 if exit_code:
                     break
 
-                elif utils.check_email(email):
+                elif utils.email_correct(email):
 
                     secret = utils.send_verify_message(email)
 

@@ -1,6 +1,6 @@
 import unittest
 
-from bot.misc.util import get_class_field_value_by_name
+from bot.misc.util import get_class_field_value_by_name, phone_parse
 
 
 class TestSomeUtils(unittest.TestCase):
@@ -38,6 +38,8 @@ class TestSomeUtils(unittest.TestCase):
         for item in self.test_table:
             actual, expect = item[0], item[1]
             self.assertEqual(expect, actual, f'fields: {fields}; tryed to find: {item[2]}')
+
+        self.assertEqual(15024920491020, phone_parse('1e%~`ASxK5&0p2ecl\'\'49:2049102-sdalfjkasjfo0t'))
 
 
 if __name__ == '__main__':
