@@ -2,7 +2,7 @@ from bot.database.main import get_connection
 from bot.database.models import UserModel
 
 
-class UserRepository:   # Need exception safety
+class UserRepository:  # Need exception safety
 
     @classmethod
     def create(cls, user: UserModel):
@@ -66,7 +66,6 @@ class UserRepository:   # Need exception safety
         with conn.transaction():
             cur.execute(query)
         return cur.fetchone()
-
 
     @classmethod
     def delete(cls, uuid):

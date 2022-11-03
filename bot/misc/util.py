@@ -63,7 +63,7 @@ def phone_parse(phone_raw: str) -> (int, bool):
     return int(number), True
 
 
-def phone_correct(phone_msg: str):
+def phone_correct(phone_msg: str) -> bool:
     phone, ok = phone_parse(phone_msg)
     if not ok:
         return False
@@ -83,7 +83,7 @@ def email_form_parse(email_raw: str) -> (str, bool):
     return email, True
 
 
-def email_correct(email_msg: str):
+def email_correct(email_msg: str) -> bool:
     email, ok = email_form_parse(email_msg)
     if not ok:
         return False
