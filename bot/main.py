@@ -6,6 +6,7 @@ from bot.email import register_email
 from bot.database import register_db
 
 
+
 def __on_start_up(bot):
     register_db()
     print("Database: OK")
