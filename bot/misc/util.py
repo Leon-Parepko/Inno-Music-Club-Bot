@@ -48,12 +48,13 @@ def phone_parse(phone_raw: str) -> (int, bool):
         return 0, False
     number = re.sub("[^0-9+]", "", phone_raw)  # leave here only digits or '+'
 
+
     # Phone number can not have less than 7 digits due ITU-T E. 164,
     # but I can be wrong. So I reduced it to 2 digits to prevent some errors.
     if len(number) < 2:
         return 0, False
     # Variability of having '+' character makes phone identification hard
-    if number[0] is not '+':
+    if number[0] != '+':
         return 0, False
     # Find if there is some extra '+' character.
     # It can ruin casting to integer and there is no reason to format number like that: "+7+(900)+123+45+67".
@@ -76,9 +77,9 @@ def email_form_parse(email_raw: str) -> (str, bool):
     email = email_raw.strip()
 
     #
-    if email.count('@') is not 1:  # "#!$%&’*+-/=?^_`{}|~ @example.com .com" exists
+    if email.count('@') != 1:  # "#!$%&’*+-/=?^_`{}|~ @example.com .com" exists
         return email, False
-    if email[0] is '@' or email[-1] is '@':  # check for empty username or domain
+    if email[0] == '@' or email[-1] == '@':  # check for empty username or domain
         return email, False
     return email, True
 

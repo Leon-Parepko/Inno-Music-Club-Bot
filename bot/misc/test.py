@@ -39,7 +39,7 @@ class TestSomeUtils(unittest.TestCase):
             actual, expect = item[0], item[1]
             self.assertEqual(expect, actual, f'fields: {fields}; tryed to find: {item[2]}')
 
-        self.assertEqual(15024920491020, phone_parse('1e%~`ASxK5&0p2ecl\'\'49:2049102-sdalfjkasjfo0t'))
+        self.assertEqual(15024920491020, phone_parse('+15---_-()({}{0249(20_4-9()1020')[0])
 
 
 if __name__ == '__main__':
