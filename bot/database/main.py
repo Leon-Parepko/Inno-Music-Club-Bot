@@ -32,7 +32,7 @@ def register_db():
 def createDB():
     for model in models:
         try:
-            createTableQuery = model().getCreateTableQuery()
+            createTableQuery = model.getCreateTableQuery()
             if createTableQuery == '':
                 raise Exception(('Model %s' % model) + ' is empty')
             cur = ConnectionDB.cursor()
